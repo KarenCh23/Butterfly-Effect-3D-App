@@ -1,0 +1,11 @@
+Model Information:
+* title:	Butterfly
+* source:	https://sketchfab.com/3d-models/butterfly-365ce4edd01f4a15ad0336f51588128a
+* author:	dennissoderblom (https://sketchfab.com/dennissoderblom)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Butterfly" (https://sketchfab.com/3d-models/butterfly-365ce4edd01f4a15ad0336f51588128a) by dennissoderblom (https://sketchfab.com/dennissoderblom) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
