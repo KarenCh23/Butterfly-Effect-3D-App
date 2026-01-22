@@ -75,6 +75,34 @@ p {
   font-family: "Italiana", serif;
 }
 
+/* Fade for the scroll text*/
+.fade-text-wrapper {
+  --fade: 0;
+}
+
+.fade-text-wrapper > * {
+  color: #fff;
+  position: relative;
+}
+
+.fade-text-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: calc(1 - var(--fade));
+  pointer-events: none;
+}
+
+/* Little trick for "Sometimes you can feel" sentence nofade */
+.force-white {
+  color: #fff !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+
+
 /* Button animation Get the App */
 
 .get-app-btn.visible {
@@ -140,6 +168,19 @@ p {
     opacity: 0.9;
   }
 }
+
+/* Fade In for the first sentence */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Responsive Mobile & Tablets */
 

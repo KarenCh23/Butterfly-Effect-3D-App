@@ -43,6 +43,48 @@ function Loader() {
   );
 }
 
+/* ---------------- ANIMATED TEXT WITH FADE ---------------- */
+
+function FadeText({ children, scrollRange = [0, 0.15], noFade = false }) {
+  const scroll = useScroll();
+  const ref = useRef();
+
+  useFrame(() => {
+    if (noFade) return;
+
+    const scrollOffset = scroll.offset;
+    const [start, end] = scrollRange;
+
+    let p = 0;
+    if (scrollOffset < start) p = 0;
+    else if (scrollOffset <= end) {
+      p = (scrollOffset - start) / (end - start);
+    } else p = 1;
+
+    if (ref.current) {
+      ref.current.style.opacity = p;
+      ref.current.style.transform = `translateY(${(1 - p) * 20}px)`;
+    }
+  });
+
+  return (
+    <div
+      ref={ref}
+      style={
+        noFade
+          ? { transform: "translateY(0)", opacity: 1 }
+          : {
+              opacity: 0,
+              transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
+              willChange: "opacity, transform",
+            }
+      }
+    >
+      {children}
+    </div>
+  );
+}
+
 /* ---------------- BUTTERFLY WITH BLUR EFFECT ---------------- */
 function BlurredButterfly({ ...props }) {
   const butterflyRef = useRef();
@@ -243,7 +285,14 @@ export default function App() {
               style={{ position: "absolute", width: "100%", height: "100vh" }}
             >
               <Col xs={12} md={6}>
-                <h1 className="scroll-text">Life can be a struggle</h1>
+                <div
+                  style={{
+                    animation: "fadeIn 1.5s ease-in forwards",
+                    opacity: 0,
+                  }}
+                >
+                  <h1 className="scroll-text">Life can be heavy</h1>
+                </div>
               </Col>
             </Row>
 
@@ -257,7 +306,11 @@ export default function App() {
               }}
             >
               <Col xs={12} md={6}>
-                <h1 className="scroll-text">Sometimes you can feel</h1>
+                <FadeText scrollRange={[0.15, 0.25]} noFade>
+                  <h1 className="scroll-text force-white">
+                    Sometimes you can feel
+                  </h1>
+                </FadeText>
               </Col>
             </Row>
 
@@ -271,9 +324,11 @@ export default function App() {
               }}
             >
               <Col xs={12} md={6}>
-                <h1 className="scroll-text">Lost</h1>
-                <h1 className="scroll-text">Overwhelmed</h1>
-                <h1 className="scroll-text">Empty inside</h1>
+                <FadeText scrollRange={[0.3, 0.4]}>
+                  <h1 className="scroll-text">Lost</h1>
+                  <h1 className="scroll-text">Overwhelmed</h1>
+                  <h1 className="scroll-text">Empty inside</h1>
+                </FadeText>
               </Col>
             </Row>
 
@@ -287,9 +342,11 @@ export default function App() {
               }}
             >
               <Col xs={12} md={6}>
-                <h1 className="scroll-text">
-                  Do you know the <br /> Butterfly effect ?
-                </h1>
+                <FadeText scrollRange={[0.48, 0.58]}>
+                  <h1 className="scroll-text">
+                    Do you know the <br /> Butterfly effect ?
+                  </h1>
+                </FadeText>
               </Col>
             </Row>
 
@@ -303,9 +360,11 @@ export default function App() {
               }}
             >
               <Col xs={12} md={8}>
-                <h1 className="scroll-text">
-                  One little step can <br /> change everything
-                </h1>
+                <FadeText scrollRange={[0.65, 0.75]}>
+                  <h1 className="scroll-text">
+                    One little step can <br /> change everything
+                  </h1>
+                </FadeText>
               </Col>
             </Row>
 
@@ -319,9 +378,11 @@ export default function App() {
               }}
             >
               <Col xs={12} md={6}>
-                <h1 className="scroll-text">
-                  It's time to get <br /> the support you need
-                </h1>
+                <FadeText scrollRange={[0.82, 0.92]}>
+                  <h1 className="scroll-text">
+                    It's time to get <br /> the support you need
+                  </h1>
+                </FadeText>
                 <AnimatedCTA />
               </Col>
             </Row>
