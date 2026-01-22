@@ -160,7 +160,7 @@ export default function App() {
           />
 
           {/* <Vignette offset={0.15} darkness={1.5} /> Ancien réglage */}
-          <Vignette offset={0.2} darkness={1.2} />
+          <Vignette offset={0.2} darkness={1} />
         </EffectComposer>
       )}
 
