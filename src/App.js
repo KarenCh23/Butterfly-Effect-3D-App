@@ -1,5 +1,5 @@
 import "./App.css";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import {
   ScrollControls,
   Scroll,
@@ -17,9 +17,11 @@ import { Butterfly } from "./models/Butterfly";
 import {
   EffectComposer,
   Bloom,
-  DepthOfField,
   Vignette,
+  SMAA,
 } from "@react-three/postprocessing";
+import * as THREE from "three";
+import { useFrame, useThree } from "@react-three/fiber";
 
 /* ---------------- LOADER ---------------- */
 
@@ -38,6 +40,45 @@ function Loader() {
         Loading…
       </div>
     </Html>
+  );
+}
+
+/* ---------------- BUTTERFLY WITH BLUR EFFECT ---------------- */
+function BlurredButterfly({ ...props }) {
+  const butterflyRef = useRef();
+
+  useEffect(() => {
+    if (butterflyRef.current) {
+      butterflyRef.current.traverse((child) => {
+        if (child.isMesh && child.material) {
+          // Clone le matériau pour ne pas affecter les autres instances
+          const mat = child.material.clone();
+
+          // Ajoute de la transparence légère pour le flou sur les contours
+          mat.transparent = true;
+          mat.opacity = 1;
+          mat.alphaTest = 0.02;
+          mat.depthWrite = true;
+
+          // Active le dithering pour un effet de flou naturel sur les bords
+          mat.dithering = true;
+
+          // Préserve les couleurs originales - pas d'émissif qui blanchit
+          // On garde juste un tout petit peu si le matériau en avait déjà
+          if (mat.emissive && mat.emissiveIntensity) {
+            mat.emissiveIntensity = Math.min(mat.emissiveIntensity, 0.05);
+          }
+
+          child.material = mat;
+        }
+      });
+    }
+  }, []);
+
+  return (
+    <group ref={butterflyRef}>
+      <Butterfly {...props} />
+    </group>
   );
 }
 
@@ -89,27 +130,49 @@ export default function App() {
         castShadow={false}
       />
 
+      {/* Lumières d'appoint très subtiles pour ne pas blanchir */}
+      <pointLight
+        position={[0, -10, 3]}
+        intensity={0.3}
+        color="#ffffff"
+        distance={15}
+      />
+      <pointLight
+        position={[0, -25, 3]}
+        intensity={0.2}
+        color="#e6f2ff"
+        distance={20}
+      />
+
       {/* ENV + FX AFTER LOAD */}
       {effectsReady && <Environment preset="warehouse" />}
 
       {effectsReady && (
-        <EffectComposer>
-          {/* <Bloom intensity={0.2} luminanceThreshold={0.1} /> */}
-          <DepthOfField focalLength={0.02} bokehScale={2} height={300} />
-          <Vignette offset={0.15} darkness={1.2} />
+        <EffectComposer multisampling={0}>
+          <SMAA />
+
+          {/* Bloom très léger pour juste un peu de glow sur les bords */}
+          <Bloom
+            intensity={0.3}
+            luminanceThreshold={0.4}
+            luminanceSmoothing={0.9}
+            mipmapBlur={true}
+          />
+
+          {/* <Vignette offset={0.15} darkness={1.5} /> Ancien réglage */}
+          <Vignette offset={0.2} darkness={1.2} />
         </EffectComposer>
       )}
 
       <ScrollControls pages={6} damping={0.25}>
-        {/* 3D BUTTERFLIES*/}
+        {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
         <Scroll>
           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
-            {/* First Butterflies */}
-            <Butterfly scale={0.05} position={[-10, -3, -6]} />
-            <Butterfly scale={0.03} position={[0, -2.5, 0]} />
-            <Butterfly scale={0.03} position={[10, -4, -10]} />
+            {/* Top Butterflies */}
+            <BlurredButterfly scale={0.05} position={[-10, -3, -6]} />
+            <BlurredButterfly scale={0.01} position={[0, -2.5, 0]} />
+            <BlurredButterfly scale={0.03} position={[10, -4, -10]} />
           </Float>
-
           {/* Middle Butterflies */}
           <Float
             speed={3.5}
@@ -117,12 +180,12 @@ export default function App() {
             floatIntensity={0.2}
             floatingRange={[1, 1]}
           >
-            <Butterfly
+            <BlurredButterfly
               key={"butterfly_4"}
               scale={0.05}
               position={[-1, -12.5, 0]}
             />
-            <Butterfly
+            <BlurredButterfly
               key={"butterfly_5"}
               scale={0.05}
               position={[12, -14, -10]}
@@ -136,17 +199,17 @@ export default function App() {
             floatIntensity={0.2}
             floatingRange={[2, 2]}
           >
-            <Butterfly
+            <BlurredButterfly
               key={"butterfly_6"}
               scale={0.03}
               position={[-3, -19.5, 2]}
             />
-            <Butterfly
+            <BlurredButterfly
               key={"butterfly_7"}
               scale={0.03}
               position={[8, -23, -10]}
             />
-            <Butterfly
+            <BlurredButterfly
               key={"butterfly_8"}
               scale={0.03}
               position={[4, -24, 2]}
@@ -159,20 +222,20 @@ export default function App() {
             floatIntensity={0.1}
             floatingRange={[2, 2]}
           >
-            <Butterfly
-              key={"butterfly_7"}
+            <BlurredButterfly
+              key={"butterfly_9"}
               scale={0.04}
               position={[15, -30, -40]}
             />
-            <Butterfly
-              key={"butterfly_8"}
-              scale={0.2}
+            <BlurredButterfly
+              key={"butterfly_10"}
+              scale={0.1}
               position={[-10, -60, -40]}
             />
           </Float>
         </Scroll>
 
-        {/* HTML — TEXTE STRICTEMENT INTACT */}
+        {/* HTML – TEXTE */}
         <Scroll html style={{ width: "100%" }}>
           <Container style={{ height: "100px", position: "relative" }}>
             <Row
@@ -259,9 +322,6 @@ export default function App() {
                 <h1 className="scroll-text">
                   It's time to get <br /> the support you need
                 </h1>
-                {/* <Button variant="outline-light" size="lg">
-                  Get the App
-                </Button> */}
                 <AnimatedCTA />
               </Col>
             </Row>

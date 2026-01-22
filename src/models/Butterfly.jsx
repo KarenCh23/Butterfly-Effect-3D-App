@@ -15,8 +15,8 @@ export function Butterfly(props) {
   const { actions, mixer } = useAnimations(animations, group);
 
   useEffect(() => {
-    // to slow down the animation on butterfly wings
-    actions.Object_0.timeScale = 0.20;
+    // to slow down or accelerate the animation on butterfly wings
+    actions.Object_0.timeScale = 0.45;
     actions.Object_0.play();
   }, [mixer, actions]);
 
