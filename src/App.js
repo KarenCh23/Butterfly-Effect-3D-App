@@ -66,7 +66,7 @@ function BlurredButterfly({ ...props }) {
           // Préserve les couleurs originales - pas d'émissif qui blanchit
           // On garde juste un tout petit peu si le matériau en avait déjà
           if (mat.emissive && mat.emissiveIntensity) {
-            mat.emissiveIntensity = Math.min(mat.emissiveIntensity, 0.05);
+            mat.emissiveIntensity = Math.min(mat.emissiveIntensity, 0.01);
           }
 
           child.material = mat;
@@ -123,23 +123,23 @@ export default function App() {
   return (
     <Suspense fallback={<Loader />}>
       {/* LIGHTS */}
-      <ambientLight intensity={0.6} />
+      <ambientLight intensity={0.2} />
       <directionalLight
         position={[5, 10, 5]}
-        intensity={1}
+        intensity={0.3}
         castShadow={false}
       />
 
       {/* Lumières d'appoint très subtiles pour ne pas blanchir */}
       <pointLight
         position={[0, -10, 3]}
-        intensity={0.3}
+        intensity={0.1}
         color="#ffffff"
         distance={15}
       />
       <pointLight
         position={[0, -25, 3]}
-        intensity={0.2}
+        intensity={0.1}
         color="#e6f2ff"
         distance={20}
       />
