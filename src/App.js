@@ -164,7 +164,7 @@ export default function App() {
         </EffectComposer>
       )}
 
-      <ScrollControls pages={6} damping={0.25}>
+      <ScrollControls pages={6} damping={0.4}>
         {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
         <Scroll>
           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
