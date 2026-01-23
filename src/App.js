@@ -185,16 +185,16 @@ export default function App() {
   // Positions adaptatives selon mobile/desktop
   const positions = isMobile
     ? {
-        pages: 6.6,
-        row2: "75vh",
-        row3: "140vh",
-        row4: "210vh",
-        row5: "275vh",
-        row6: "330vh",
-        fadeRange6: [0.75, 0.85],
+        pages: 6.2,
+        row2: "60vh",
+        row3: "110vh",
+        row4: "160vh",
+        row5: "210vh",
+        row6: "255vh",
+        fadeRange6: isMobile ? [0.65, 0.75] : [0.82, 0.92],
       }
     : {
-        pages: 5.5,
+        pages: 6,
         row2: "100vh",
         row3: "190vh",
         row4: "300vh",
@@ -248,7 +248,7 @@ export default function App() {
       )}
 
       {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
-      <ScrollControls pages={6.6} damping={0.4}>
+      <ScrollControls pages={positions.pages} damping={0.4}>
         <Scroll>
           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
             {/* Top Butterflies */}
