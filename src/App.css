@@ -209,8 +209,8 @@ p {
 
   /* Force l'affichage du dernier bloc sur mobile - Brave friendly */
 
-  .row {
-    margin-bottom: 40px !important;
+  .scroll-text {
+    margin-bottom: 20px !important;
   }
 
   .row:last-child {

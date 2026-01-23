@@ -190,7 +190,7 @@ export default function App() {
         row3: "140vh",
         row4: "210vh",
         row5: "275vh",
-        row6: "300vh",
+        row6: "330vh",
         fadeRange6: [0.75, 0.85],
       }
     : {
