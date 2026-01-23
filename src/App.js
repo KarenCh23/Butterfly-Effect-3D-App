@@ -206,7 +206,7 @@ export default function App() {
         </EffectComposer>
       )}
 
-      <ScrollControls pages={6} damping={0.4}>
+      <ScrollControls pages={5.5} damping={0.4}>
         {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
         <Scroll>
           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
@@ -291,7 +291,7 @@ export default function App() {
                     opacity: 0,
                   }}
                 >
-                  <h1 className="scroll-text">Life can be heavy</h1>
+                  <h1 className="scroll-text">Life isn’t always easy</h1>
                 </div>
               </Col>
             </Row>
@@ -301,7 +301,7 @@ export default function App() {
               style={{
                 position: "absolute",
                 width: "100%",
-                height: "100vh",
+                height: "70vh",
                 top: "100vh",
               }}
             >
@@ -319,8 +319,8 @@ export default function App() {
               style={{
                 position: "absolute",
                 width: "100%",
-                height: "100vh",
-                top: "200vh",
+                height: "80vh",
+                top: "190vh",
               }}
             >
               <Col xs={12} md={6}>
@@ -337,7 +337,7 @@ export default function App() {
               style={{
                 position: "absolute",
                 width: "100%",
-                height: "100vh",
+                height: "70vh",
                 top: "300vh",
               }}
             >
@@ -355,7 +355,7 @@ export default function App() {
               style={{
                 position: "absolute",
                 width: "100%",
-                height: "100vh",
+                height: "70vh",
                 top: "400vh",
               }}
             >
@@ -373,8 +373,8 @@ export default function App() {
               style={{
                 position: "absolute",
                 width: "100%",
-                height: "100vh",
-                top: "500vh",
+                height: "80vh",
+                top: "460vh",
               }}
             >
               <Col xs={12} md={6}>
