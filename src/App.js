@@ -206,7 +206,7 @@ export default function App() {
         </EffectComposer>
       )}
 
-      <ScrollControls pages={5.5} damping={0.4}>
+      <ScrollControls pages={4.5} damping={0.4}>
         {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
         <Scroll>
           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
@@ -272,7 +272,7 @@ export default function App() {
             <BlurredButterfly
               key={"butterfly_10"}
               scale={0.1}
-              position={[-10, -60, -40]}
+              position={[-10, -55, -40]}
             />
           </Float>
         </Scroll>
