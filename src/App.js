@@ -185,13 +185,13 @@ export default function App() {
   // Positions adaptatives selon mobile/desktop
   const positions = isMobile
     ? {
-        pages: 6.2,
-        row2: "60vh",
-        row3: "110vh",
-        row4: "160vh",
-        row5: "210vh",
-        row6: "255vh",
-        fadeRange6: isMobile ? [0.65, 0.75] : [0.82, 0.92],
+        pages: 6,
+        row2: "75vh",
+        row3: "140vh",
+        row4: "210vh",
+        row5: "275vh",
+        row6: "330vh",
+        fadeRange6: isMobile ? [0.6, 0.7] : [0.82, 0.92]
       }
     : {
         pages: 6,
@@ -376,7 +376,7 @@ export default function App() {
 
             <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
-                <FadeText scrollRange={isMobile ? [0.72, 0.82] : [0.82, 0.92]}>
+                <FadeText scrollRange={positions.fadeRange6}>
                   <h1 className="scroll-text">
                     It's time to get <br /> the support you need
                   </h1>
