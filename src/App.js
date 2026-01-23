@@ -183,25 +183,25 @@ export default function App() {
   }, []);
 
   // Positions adaptatives selon mobile/desktop
-  // const positions = isMobile
-  //   ? {
-  //       pages: 4.6,
-  //       row2: "75vh",
-  //       row3: "140vh",
-  //       row4: "210vh",
-  //       row5: "275vh",
-  //       row6: "330vh",
-  //       fadeRange6: [0.75, 0.85],
-  //     }
-  //   : {
-  //       pages: 5.5,
-  //       row2: "100vh",
-  //       row3: "190vh",
-  //       row4: "300vh",
-  //       row5: "400vh",
-  //       row6: "460vh",
-  //       fadeRange6: [0.82, 0.92],
-  //     };
+  const positions = isMobile
+    ? {
+        pages: 4.6,
+        row2: "75vh",
+        row3: "140vh",
+        row4: "210vh",
+        row5: "275vh",
+        row6: "300vh",
+        fadeRange6: [0.75, 0.85],
+      }
+    : {
+        pages: 5.5,
+        row2: "100vh",
+        row3: "190vh",
+        row4: "300vh",
+        row5: "400vh",
+        row6: "460vh",
+        fadeRange6: [0.82, 0.92],
+      };
 
   return (
     <Suspense fallback={<Loader />}>
@@ -376,7 +376,7 @@ export default function App() {
 
             <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
-                <FadeText scrollRange={[0.82, 0.92]}>
+                <FadeText scrollRange={isMobile ? [0.72, 0.82] : [0.82, 0.92]}>
                   <h1 className="scroll-text">
                     It's time to get <br /> the support you need
                   </h1>
