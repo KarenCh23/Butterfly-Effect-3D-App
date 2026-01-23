@@ -236,8 +236,8 @@ p {
 ========================= */
 
 @media (max-width: 1024px) {
-  .row {
-    justify-content: flex-start;
-    padding-top: 12vh;
+  .scroll-section {
+    justify-content: flex-start !important;
+    padding-top: 10vh;
   }
 }
