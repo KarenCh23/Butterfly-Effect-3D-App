@@ -618,25 +618,25 @@ export default function App() {
   }, []);
 
   // Positions adaptatives selon mobile/desktop
-  const positions = isMobile
-    ? {
-        pages: 4.6,
-        row2: "75vh",
-        row3: "140vh",
-        row4: "210vh",
-        row5: "275vh",
-        row6: "330vh",
-        fadeRange6: [0.75, 0.85],
-      }
-    : {
-        pages: 5.5,
-        row2: "100vh",
-        row3: "190vh",
-        row4: "300vh",
-        row5: "400vh",
-        row6: "460vh",
-        fadeRange6: [0.82, 0.92],
-      };
+  // const positions = isMobile
+  //   ? {
+  //       pages: 4.6,
+  //       row2: "75vh",
+  //       row3: "140vh",
+  //       row4: "210vh",
+  //       row5: "275vh",
+  //       row6: "330vh",
+  //       fadeRange6: [0.75, 0.85],
+  //     }
+  //   : {
+  //       pages: 5.5,
+  //       row2: "100vh",
+  //       row3: "190vh",
+  //       row4: "300vh",
+  //       row5: "400vh",
+  //       row6: "460vh",
+  //       fadeRange6: [0.82, 0.92],
+  //     };
 
   return (
     <Suspense fallback={<Loader />}>
@@ -682,8 +682,8 @@ export default function App() {
         </EffectComposer>
       )}
 
-      <ScrollControls pages={positions.pages} damping={0.4}>
-        {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
+      {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
+      <ScrollControls pages={6} damping={0.4}>
         <Scroll>
           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
             {/* Top Butterflies */}
@@ -755,11 +755,8 @@ export default function App() {
 
         {/* HTML – TEXTE */}
         <Scroll html style={{ width: "100%" }}>
-          <Container style={{ height: "100px", position: "relative" }}>
-            <Row
-              className="text-center align-items-center justify-content-center"
-              style={{ position: "absolute", width: "100%", height: "100vh" }}
-            >
+          <Container>
+            <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
                 <div
                   style={{
@@ -772,15 +769,7 @@ export default function App() {
               </Col>
             </Row>
 
-            <Row
-              className="text-center align-items-center justify-content-center"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "70vh",
-                top: positions.row2,
-              }}
-            >
+            <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
                 <FadeText scrollRange={[0.15, 0.25]} noFade>
                   <h1 className="scroll-text force-white">
@@ -790,15 +779,7 @@ export default function App() {
               </Col>
             </Row>
 
-            <Row
-              className="text-center align-items-center justify-content-center"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "80vh",
-                top: positions.row3,
-              }}
-            >
+            <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
                 <FadeText scrollRange={[0.3, 0.4]}>
                   <h1 className="scroll-text">Lost</h1>
@@ -808,15 +789,7 @@ export default function App() {
               </Col>
             </Row>
 
-            <Row
-              className="text-center align-items-center justify-content-center"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "70vh",
-                top: positions.row4,
-              }}
-            >
+            <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
                 <FadeText scrollRange={[0.48, 0.58]}>
                   <h1 className="scroll-text">
@@ -826,15 +799,7 @@ export default function App() {
               </Col>
             </Row>
 
-            <Row
-              className="text-center align-items-center justify-content-center"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "70vh",
-                top: positions.row5,
-              }}
-            >
+            <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={8}>
                 <FadeText scrollRange={[0.65, 0.75]}>
                   <h1 className="scroll-text">
@@ -844,17 +809,9 @@ export default function App() {
               </Col>
             </Row>
 
-            <Row
-              className="text-center align-items-center justify-content-center"
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "min(80vh, 600px)",
-                top: positions.row6,
-              }}
-            >
+            <Row className="scroll-section text-center align-items-center justify-content-center">
               <Col xs={12} md={6}>
-                <FadeText scrollRange={positions.fadeRange6}>
+                <FadeText scrollRange={[0.82, 0.92]}>
                   <h1 className="scroll-text">
                     It's time to get <br /> the support you need
                   </h1>

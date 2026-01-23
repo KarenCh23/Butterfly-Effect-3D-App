@@ -75,6 +75,13 @@ p {
   font-family: "Italiana", serif;
 }
 
+.scroll-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Fade for the scroll text*/
 .fade-text-wrapper {
   --fade: 0;
