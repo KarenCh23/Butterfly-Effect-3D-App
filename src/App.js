@@ -589,7 +589,7 @@ export default function App() {
     // row5: "300vh",
     // row6: "360vh",
 
- pages: 4.0,
+ pages: 4.5,
     row2: "75vh",
     row3: "140vh",
     row4: "210vh",
