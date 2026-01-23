@@ -23,6 +23,24 @@
 // import * as THREE from "three";
 // import { useFrame, useThree } from "@react-three/fiber";
 
+// /* ---------------- HOOK POUR DETECTER MOBILE ---------------- */
+// function useIsMobile() {
+//   const [isMobile, setIsMobile] = useState(false);
+
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+
+//     checkMobile();
+//     window.addEventListener("resize", checkMobile);
+
+//     return () => window.removeEventListener("resize", checkMobile);
+//   }, []);
+
+//   return isMobile;
+// }
+
 // /* ---------------- LOADER ---------------- */
 
 // function Loader() {
@@ -131,7 +149,7 @@
 
 //   useEffect(() => {
 //     const unsubscribe = scroll.el.addEventListener("scroll", () => {
-//       if (scroll.offset > 0.9) {
+//       if (scroll.offset > 0.8) {
 //         setVisible(true);
 //       }
 //     });
@@ -156,11 +174,31 @@
 
 // export default function App() {
 //   const [effectsReady, setEffectsReady] = useState(false);
+//   const isMobile = useIsMobile();
 
 //   useEffect(() => {
 //     const t = setTimeout(() => setEffectsReady(true), 800);
 //     return () => clearTimeout(t);
 //   }, []);
+
+//   // Positions adaptatives selon mobile/desktop
+//   const positions = isMobile
+//     ? {
+//         pages: 4.5,
+//         row2: "75vh",
+//         row3: "140vh",
+//         row4: "210vh",
+//         row5: "275vh",
+//         row6: "330vh",
+//       }
+//     : {
+//         pages: 5.5,
+//         row2: "100vh",
+//         row3: "190vh",
+//         row4: "300vh",
+//         row5: "400vh",
+//         row6: "460vh",
+//       };
 
 //   return (
 //     <Suspense fallback={<Loader />}>
@@ -206,7 +244,7 @@
 //         </EffectComposer>
 //       )}
 
-//       <ScrollControls pages={5.5} damping={0.4}>
+//       <ScrollControls pages={positions.pages} damping={0.4}>
 //         {/* 3D BUTTERFLIES AVEC EFFET FLOU */}
 //         <Scroll>
 //           <Float speed={1} rotationIntensity={2} floatIntensity={0.2}>
@@ -291,7 +329,7 @@
 //                     opacity: 0,
 //                   }}
 //                 >
-//                   <h1 className="scroll-text">Life isn’t always easy</h1>
+//                   <h1 className="scroll-text">Life isn't always easy</h1>
 //                 </div>
 //               </Col>
 //             </Row>
@@ -302,7 +340,7 @@
 //                 position: "absolute",
 //                 width: "100%",
 //                 height: "70vh",
-//                 top: "100vh",
+//                 top: positions.row2,
 //               }}
 //             >
 //               <Col xs={12} md={6}>
@@ -320,7 +358,7 @@
 //                 position: "absolute",
 //                 width: "100%",
 //                 height: "80vh",
-//                 top: "190vh",
+//                 top: positions.row3,
 //               }}
 //             >
 //               <Col xs={12} md={6}>
@@ -338,7 +376,7 @@
 //                 position: "absolute",
 //                 width: "100%",
 //                 height: "70vh",
-//                 top: "300vh",
+//                 top: positions.row4,
 //               }}
 //             >
 //               <Col xs={12} md={6}>
@@ -356,7 +394,7 @@
 //                 position: "absolute",
 //                 width: "100%",
 //                 height: "70vh",
-//                 top: "400vh",
+//                 top: positions.row5,
 //               }}
 //             >
 //               <Col xs={12} md={8}>
@@ -374,7 +412,7 @@
 //                 position: "absolute",
 //                 width: "100%",
 //                 height: "80vh",
-//                 top: "460vh",
+//                 top: positions.row6,
 //               }}
 //             >
 //               <Col xs={12} md={6}>
@@ -395,7 +433,7 @@
 
 
 
-/* TEST ICI ----------------------------------*/ 
+/*TEST 4 ICI ---------------------------------- */
 
 import "./App.css";
 import { Suspense, useEffect, useState, useRef } from "react";
@@ -548,7 +586,8 @@ function AnimatedCTA() {
 
   useEffect(() => {
     const unsubscribe = scroll.el.addEventListener("scroll", () => {
-      if (scroll.offset > 0.8) {
+      const threshold = window.innerWidth <= 768 ? 0.7 : 0.85;
+      if (scroll.offset > threshold) {
         setVisible(true);
       }
     });
@@ -582,26 +621,13 @@ export default function App() {
 
   // Positions adaptatives selon mobile/desktop
   const positions = isMobile ? {
-    // pages: 4.5,
-    // row2: "80vh",
-    // row3: "150vh",
-    // row4: "230vh",
-    // row5: "300vh",
-    // row6: "360vh",
-
- pages: 4.5,
+    pages: 4.2,
     row2: "75vh",
     row3: "140vh",
     row4: "210vh",
     row5: "275vh",
     row6: "330vh",
-
-
-
-
-
-
-
+    fadeRange6: [0.75, 0.85],
   } : {
     pages: 5.5,
     row2: "100vh",
@@ -609,6 +635,7 @@ export default function App() {
     row4: "300vh",
     row5: "400vh",
     row6: "460vh",
+    fadeRange6: [0.82, 0.92],
   };
 
   return (
@@ -827,7 +854,7 @@ export default function App() {
               }}
             >
               <Col xs={12} md={6}>
-                <FadeText scrollRange={[0.82, 0.92]}>
+                <FadeText scrollRange={positions.fadeRange6}>
                   <h1 className="scroll-text">
                     It's time to get <br /> the support you need
                   </h1>
