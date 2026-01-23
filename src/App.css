@@ -101,8 +101,6 @@ p {
   opacity: 1 !important;
 }
 
-
-
 /* Button animation Get the App */
 
 .get-app-btn.visible {
@@ -181,7 +179,6 @@ p {
   }
 }
 
-
 /* Responsive Mobile & Tablets */
 
 @media (max-width: 768px) {
@@ -196,7 +193,7 @@ p {
   .scroll-text {
     text-align: center;
   }
-  
+
   .get-app-btn {
     margin-top: 20px;
     position: relative;
@@ -209,13 +206,14 @@ p {
     min-height: 100vh !important;
   }
 
-
-
-
-}
-
-@media (max-width: 768px) {
   .container {
     max-width: 100% !important;
+  }
+
+  html,
+  body,
+  #root {
+    position: relative;
+    overflow: hidden;
   }
 }

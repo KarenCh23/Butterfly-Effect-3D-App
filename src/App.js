@@ -431,8 +431,6 @@
 //   );
 // }
 
-
-
 /*TEST 4 ICI ---------------------------------- */
 
 import "./App.css";
@@ -468,11 +466,11 @@ function useIsMobile() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   return isMobile;
@@ -561,7 +559,7 @@ function BlurredButterfly({ ...props }) {
           mat.dithering = true;
 
           // Préserve les couleurs originales - pas d'émissif qui blanchit
-          // On garde juste un tout petit peu si le matériau en avait déjà 
+          // On garde juste un tout petit peu si le matériau en avait déjà
           if (mat.emissive && mat.emissiveIntensity) {
             mat.emissiveIntensity = Math.min(mat.emissiveIntensity, 0.01);
           }
@@ -620,23 +618,25 @@ export default function App() {
   }, []);
 
   // Positions adaptatives selon mobile/desktop
-  const positions = isMobile ? {
-    pages: 4.2,
-    row2: "75vh",
-    row3: "140vh",
-    row4: "210vh",
-    row5: "275vh",
-    row6: "330vh",
-    fadeRange6: [0.75, 0.85],
-  } : {
-    pages: 5.5,
-    row2: "100vh",
-    row3: "190vh",
-    row4: "300vh",
-    row5: "400vh",
-    row6: "460vh",
-    fadeRange6: [0.82, 0.92],
-  };
+  const positions = isMobile
+    ? {
+        pages: 4.6,
+        row2: "75vh",
+        row3: "140vh",
+        row4: "210vh",
+        row5: "275vh",
+        row6: "330vh",
+        fadeRange6: [0.75, 0.85],
+      }
+    : {
+        pages: 5.5,
+        row2: "100vh",
+        row3: "190vh",
+        row4: "300vh",
+        row5: "400vh",
+        row6: "460vh",
+        fadeRange6: [0.82, 0.92],
+      };
 
   return (
     <Suspense fallback={<Loader />}>
@@ -849,7 +849,7 @@ export default function App() {
               style={{
                 position: "absolute",
                 width: "100%",
-                height: "80vh",
+                height: "min(80vh, 600px)",
                 top: positions.row6,
               }}
             >
