@@ -548,7 +548,7 @@ function AnimatedCTA() {
 
   useEffect(() => {
     const unsubscribe = scroll.el.addEventListener("scroll", () => {
-      if (scroll.offset > 0.85) {
+      if (scroll.offset > 0.8) {
         setVisible(true);
       }
     });
@@ -582,12 +582,26 @@ export default function App() {
 
   // Positions adaptatives selon mobile/desktop
   const positions = isMobile ? {
-    pages: 4.5,
-    row2: "80vh",
-    row3: "150vh",
-    row4: "230vh",
-    row5: "300vh",
-    row6: "360vh",
+    // pages: 4.5,
+    // row2: "80vh",
+    // row3: "150vh",
+    // row4: "230vh",
+    // row5: "300vh",
+    // row6: "360vh",
+
+ pages: 4.0,
+    row2: "75vh",
+    row3: "140vh",
+    row4: "210vh",
+    row5: "275vh",
+    row6: "330vh",
+
+
+
+
+
+
+
   } : {
     pages: 5.5,
     row2: "100vh",
