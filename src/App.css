@@ -229,3 +229,15 @@ p {
     overflow: hidden;
   }
 }
+
+/* =========================
+   MOBILE / TABLETTE ONLY
+   Décalage vertical des phrases
+========================= */
+
+@media (max-width: 1024px) {
+  .row {
+    justify-content: flex-start;
+    padding-top: 18vh;
+  }
+}
