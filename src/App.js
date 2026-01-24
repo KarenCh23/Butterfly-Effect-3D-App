@@ -41,6 +41,39 @@ function useIsMobile() {
   return isMobile;
 }
 
+/* ---------------- ANIMATED TEXT WITH FADE (MOBILE / TABLETS) ---------------- */
+
+function FadeMobile({ children }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          element.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.3, // animation triggers when 30% visible
+      },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="fade-mobile">
+      {children}
+    </div>
+  );
+}
+
 /* ---------------- LOADER ---------------- */
 
 function Loader() {
@@ -61,7 +94,7 @@ function Loader() {
   );
 }
 
-/* ---------------- ANIMATED TEXT WITH FADE ---------------- */
+/* ---------------- ANIMATED TEXT WITH FADE (DESKTOP) ---------------- */
 
 function FadeText({ children, scrollRange = [0, 0.15], noFade = false }) {
   const scroll = useScroll();
@@ -326,11 +359,9 @@ export default function App() {
               {/* SCREEN 1 – phrase seule centrée */}
               <Row className="scroll-section text-center align-items-center justify-content-center">
                 <Col xs={12}>
-                  <div
-                    className="fade-mobile"
-                  >
+                  <FadeMobile>
                     <h1 className="scroll-text">Life isn't always easy</h1>
-                  </div>
+                  </FadeMobile>
                 </Col>
               </Row>
 
@@ -344,17 +375,17 @@ export default function App() {
                     gap: "30vh",
                   }}
                 >
-                  <div className="fade-mobile">
+                  <FadeMobile>
                     <h1 className="scroll-text force-white">
                       Sometimes you can feel
                     </h1>
-                  </div>
+                  </FadeMobile>
 
-                  <div className="fade-mobile">
+                  <FadeMobile>
                     <h1 className="scroll-text">Lost</h1>
                     <h1 className="scroll-text">Overwhelmed</h1>
                     <h1 className="scroll-text">Empty inside</h1>
-                  </div>
+                  </FadeMobile>
                 </Col>
               </Row>
 
@@ -368,28 +399,28 @@ export default function App() {
                     gap: "30vh",
                   }}
                 >
-                  <div className="fade-mobile">
+                  <FadeMobile>
                     <h1 className="scroll-text">
                       Do you know the <br /> Butterfly effect ?
                     </h1>
-                  </div>
+                  </FadeMobile>
 
-                  <div className="fade-mobile">
+                  <FadeMobile>
                     <h1 className="scroll-text">
                       One little step can <br /> change everything
                     </h1>
-                  </div>
+                  </FadeMobile>
                 </Col>
               </Row>
 
               {/* SCREEN 4 – phrase + bouton centrés */}
               <Row className="scroll-section text-center align-items-center justify-content-center">
                 <Col xs={12}>
-                  <div className="fade-mobile">
+                  <FadeMobile>
                     <h1 className="scroll-text">
                       It's time to get <br /> the support you need
                     </h1>
-                  </div>
+                  </FadeMobile>
                   <AnimatedCTA />
                 </Col>
               </Row>
