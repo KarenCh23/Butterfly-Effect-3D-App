@@ -29,7 +29,7 @@ function useIsMobile() {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
     };
 
     checkMobile();
@@ -185,13 +185,12 @@ export default function App() {
   // Positions adaptatives selon mobile/desktop
   const positions = isMobile
     ? {
-        pages: 6,
+        pages: 4,
         row2: "75vh",
         row3: "140vh",
         row4: "210vh",
         row5: "275vh",
         row6: "330vh",
-        fadeRange6: isMobile ? [0.6, 0.7] : [0.82, 0.92]
       }
     : {
         pages: 6,
@@ -200,7 +199,6 @@ export default function App() {
         row4: "300vh",
         row5: "400vh",
         row6: "460vh",
-        fadeRange6: [0.82, 0.92],
       };
 
   return (
@@ -319,236 +317,155 @@ export default function App() {
         </Scroll>
 
         {/* HTML – TEXTE */}
-        {/* <Scroll html style={{ width: "100%" }}>
-          <Container>
-            <Row className="scroll-section text-center align-items-center justify-content-center">
-              <Col xs={12} md={6}>
-                <div
-                  style={{
-                    animation: "fadeIn 1.5s ease-in forwards",
-                    opacity: 0,
-                  }}
-                >
-                  <h1 className="scroll-text">Life isn't always easy</h1>
-                </div>
-              </Col>
-            </Row>
-
-            <Row className="scroll-section text-center align-items-center justify-content-center">
-              <Col xs={12} md={6}>
-                <FadeText scrollRange={[0.15, 0.25]} noFade>
-                  <h1 className="scroll-text force-white">
-                    Sometimes you can feel
-                  </h1>
-                </FadeText>
-              </Col>
-            </Row>
-
-            <Row className="scroll-section text-center align-items-center justify-content-center">
-              <Col xs={12} md={6}>
-                <FadeText scrollRange={[0.3, 0.4]}>
-                  <h1 className="scroll-text">Lost</h1>
-                  <h1 className="scroll-text">Overwhelmed</h1>
-                  <h1 className="scroll-text">Empty inside</h1>
-                </FadeText>
-              </Col>
-            </Row>
-
-            <Row className="scroll-section text-center align-items-center justify-content-center">
-              <Col xs={12} md={6}>
-                <FadeText scrollRange={[0.48, 0.58]}>
-                  <h1 className="scroll-text">
-                    Do you know the <br /> Butterfly effect ?
-                  </h1>
-                </FadeText>
-              </Col>
-            </Row>
-
-            <Row className="scroll-section text-center align-items-center justify-content-center">
-              <Col xs={12} md={8}>
-                <FadeText scrollRange={[0.65, 0.75]}>
-                  <h1 className="scroll-text">
-                    One little step can <br /> change everything
-                  </h1>
-                </FadeText>
-              </Col>
-            </Row>
-
-            <Row className="scroll-section text-center align-items-center justify-content-center">
-              <Col xs={12} md={6}>
-                <FadeText scrollRange={positions.fadeRange6}>
-                  <h1 className="scroll-text">
-                    It's time to get <br /> the support you need
-                  </h1>
-                </FadeText>
-                <AnimatedCTA />
-              </Col>
-            </Row>
-          </Container>
-        </Scroll> */}
-
-{/* HTML – TEXTE */}
-<Scroll html style={{ width: "100%" }}>
-  {isMobile ? (
-    /* =======================
+        <Scroll html style={{ width: "100%" }}>
+          {isMobile ? (
+            /* =======================
        VERSION MOBILE
        ======================= */
-    <Container>
+            <Container>
+              {/* SCREEN 1 – phrase seule centrée */}
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12}>
+                  <div
+                    className="fade-mobile"
+                  >
+                    <h1 className="scroll-text">Life isn't always easy</h1>
+                  </div>
+                </Col>
+              </Row>
 
-      {/* SCREEN 1 – phrase seule centrée */}
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12}>
-          <div
-            style={{
-              animation: "fadeIn 1.5s ease-in forwards",
-              opacity: 0,
-            }}
-          >
-            <h1 className="scroll-text">Life isn't always easy</h1>
-          </div>
-        </Col>
-      </Row>
+              {/* SCREEN 2 – deux blocs espacés */}
+              <Row className="scroll-section text-center align-items-start justify-content-center">
+                <Col
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "30vh",
+                  }}
+                >
+                  <div className="fade-mobile">
+                    <h1 className="scroll-text force-white">
+                      Sometimes you can feel
+                    </h1>
+                  </div>
 
-      {/* SCREEN 2 – deux blocs espacés */}
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col
-          xs={12}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "6vh",
-          }}
-        >
-          <FadeText noFade>
-            <h1 className="scroll-text force-white">
-              Sometimes you can feel
-            </h1>
-          </FadeText>
+                  <div className="fade-mobile">
+                    <h1 className="scroll-text">Lost</h1>
+                    <h1 className="scroll-text">Overwhelmed</h1>
+                    <h1 className="scroll-text">Empty inside</h1>
+                  </div>
+                </Col>
+              </Row>
 
-          <FadeText>
-            <h1 className="scroll-text">Lost</h1>
-            <h1 className="scroll-text">Overwhelmed</h1>
-            <h1 className="scroll-text">Empty inside</h1>
-          </FadeText>
-        </Col>
-      </Row>
+              {/* SCREEN 3 – deux blocs espacés */}
+              <Row className="scroll-section text-center align-items-start justify-content-center">
+                <Col
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "30vh",
+                  }}
+                >
+                  <div className="fade-mobile">
+                    <h1 className="scroll-text">
+                      Do you know the <br /> Butterfly effect ?
+                    </h1>
+                  </div>
 
-      {/* SCREEN 3 – deux blocs espacés */}
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col
-          xs={12}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "6vh",
-          }}
-        >
-          <FadeText>
-            <h1 className="scroll-text">
-              Do you know the <br /> Butterfly effect ?
-            </h1>
-          </FadeText>
+                  <div className="fade-mobile">
+                    <h1 className="scroll-text">
+                      One little step can <br /> change everything
+                    </h1>
+                  </div>
+                </Col>
+              </Row>
 
-          <FadeText>
-            <h1 className="scroll-text">
-              One little step can <br /> change everything
-            </h1>
-          </FadeText>
-        </Col>
-      </Row>
-
-      {/* SCREEN 4 – phrase + bouton centrés */}
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12}>
-          <FadeText>
-            <h1 className="scroll-text">
-              It's time to get <br /> the support you need
-            </h1>
-          </FadeText>
-          <AnimatedCTA />
-        </Col>
-      </Row>
-
-    </Container>
-  ) : (
-    /* =======================
+              {/* SCREEN 4 – phrase + bouton centrés */}
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12}>
+                  <div className="fade-mobile">
+                    <h1 className="scroll-text">
+                      It's time to get <br /> the support you need
+                    </h1>
+                  </div>
+                  <AnimatedCTA />
+                </Col>
+              </Row>
+            </Container>
+          ) : (
+            /* =======================
        VERSION DESKTOP
        ======================= */
-    <Container>
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12} md={6}>
-          <div
-            style={{
-              animation: "fadeIn 1.5s ease-in forwards",
-              opacity: 0,
-            }}
-          >
-            <h1 className="scroll-text">Life isn't always easy</h1>
-          </div>
-        </Col>
-      </Row>
+            <Container>
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12} md={6}>
+                  <div
+                    style={{
+                      animation: "fadeIn 1.5s ease-in forwards",
+                      opacity: 0,
+                    }}
+                  >
+                    <h1 className="scroll-text">Life isn't always easy</h1>
+                  </div>
+                </Col>
+              </Row>
 
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12} md={6}>
-          <FadeText scrollRange={[0.15, 0.25]} noFade>
-            <h1 className="scroll-text force-white">
-              Sometimes you can feel
-            </h1>
-          </FadeText>
-        </Col>
-      </Row>
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12} md={6}>
+                  <FadeText scrollRange={[0.15, 0.25]} noFade>
+                    <h1 className="scroll-text force-white">
+                      Sometimes you can feel
+                    </h1>
+                  </FadeText>
+                </Col>
+              </Row>
 
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12} md={6}>
-          <FadeText scrollRange={[0.3, 0.4]}>
-            <h1 className="scroll-text">Lost</h1>
-            <h1 className="scroll-text">Overwhelmed</h1>
-            <h1 className="scroll-text">Empty inside</h1>
-          </FadeText>
-        </Col>
-      </Row>
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12} md={6}>
+                  <FadeText scrollRange={[0.3, 0.4]}>
+                    <h1 className="scroll-text">Lost</h1>
+                    <h1 className="scroll-text">Overwhelmed</h1>
+                    <h1 className="scroll-text">Empty inside</h1>
+                  </FadeText>
+                </Col>
+              </Row>
 
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12} md={6}>
-          <FadeText scrollRange={[0.48, 0.58]}>
-            <h1 className="scroll-text">
-              Do you know the <br /> Butterfly effect ?
-            </h1>
-          </FadeText>
-        </Col>
-      </Row>
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12} md={6}>
+                  <FadeText scrollRange={[0.48, 0.58]}>
+                    <h1 className="scroll-text">
+                      Do you know the <br /> Butterfly effect ?
+                    </h1>
+                  </FadeText>
+                </Col>
+              </Row>
 
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12} md={8}>
-          <FadeText scrollRange={[0.65, 0.75]}>
-            <h1 className="scroll-text">
-              One little step can <br /> change everything
-            </h1>
-          </FadeText>
-        </Col>
-      </Row>
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12} md={8}>
+                  <FadeText scrollRange={[0.65, 0.75]}>
+                    <h1 className="scroll-text">
+                      One little step can <br /> change everything
+                    </h1>
+                  </FadeText>
+                </Col>
+              </Row>
 
-      <Row className="scroll-section text-center align-items-center justify-content-center">
-        <Col xs={12} md={6}>
-          <FadeText scrollRange={[0.82, 0.92]}>
-            <h1 className="scroll-text">
-              It's time to get <br /> the support you need
-            </h1>
-          </FadeText>
-          <AnimatedCTA />
-        </Col>
-      </Row>
-    </Container>
-  )}
-</Scroll>
-
-
-
-
-
-
+              <Row className="scroll-section text-center align-items-center justify-content-center">
+                <Col xs={12} md={6}>
+                  <FadeText scrollRange={[0.82, 0.92]}>
+                    <h1 className="scroll-text">
+                      It's time to get <br /> the support you need
+                    </h1>
+                  </FadeText>
+                  <AnimatedCTA />
+                </Col>
+              </Row>
+            </Container>
+          )}
+        </Scroll>
       </ScrollControls>
     </Suspense>
   );
 }
-
