@@ -38,13 +38,6 @@ function Root() {
 
       {/* CANVAS UNIQUE */}
       <Canvas
-        // dpr={[1, 2]}
-        // gl={{
-        //   antialias: true,
-        //   outputColorSpace: THREE.SRGBColorSpace,
-        //   toneMapping: THREE.ACESFilmicToneMapping,
-        //   toneMappingExposure: 1,
-        // }}
         style={{ background: "#000000" }}
         camera={{
           position: isMobile ? [1.8, 0, 7] : [0, 0, 10],
@@ -63,3 +56,7 @@ root.render(
     <Root />
   </React.StrictMode>,
 );
+
+
+
+
