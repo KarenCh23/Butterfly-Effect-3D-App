@@ -77,6 +77,7 @@ p {
 
 .scroll-section {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,7 +208,6 @@ p {
     z-index: 10;
   }
 
-
   .scroll-text {
     margin-bottom: 20px !important;
   }
@@ -230,15 +230,14 @@ p {
 }
 
 /* =========================
-   MOBILE / TABLETTE ONLY
+   MOBILE ONLY
  
 ========================= */
 
-@media (max-width: 1024px) {
+@media (max-width: 767px) {
   .scroll-section {
     justify-content: flex-start !important;
   }
-
 }
 
 /* =========================
@@ -254,5 +253,7 @@ p {
 .fade-mobile.is-visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 1.5s ease, transform 1.5s ease;
+  transition:
+    opacity 1.5s ease,
+    transform 1.5s ease;
 }
