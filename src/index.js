@@ -9,7 +9,7 @@ import { Canvas } from "@react-three/fiber";
 
 function Root() {
   const [fadeOut, setFadeOut] = useState(false);
-  const isMobile = window.innerWidth <= 1024;
+  const isMobile = window.innerWidth <= 768;
 
   useEffect(() => {
     const t = setTimeout(() => setFadeOut(true), 1200);
